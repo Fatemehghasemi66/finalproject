@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Channels;
 
 namespace final_project
 {
@@ -14,50 +16,8 @@ namespace final_project
         {
             return name + " " + lastname;
         }
-
-
-        static void Main(string[] args)
+        public static string MobileNumber(string mobile)
         {
-            Console.WriteLine(DateTime.Now); //Date &Time
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("welcome To Csharpsco course");
-            Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("To take this course, you must be under 30 years old and female");
-            Console.ResetColor();
-            Divider(); Divider();
-            Console.WriteLine("Please enter your name:");//Get name
-            string name = Console.ReadLine();
-            Console.WriteLine("Please enter your last name:");
-            string lastname = Console.ReadLine();
-            string fullname = Fullname(name, lastname);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Hello {fullname}"); Divider();
-            Console.WriteLine("please enter your gender: 'F' for Female & 'M' for Male");//Get gender
-            string genderSTR = Console.ReadLine();
-            Console.WriteLine("please enter your age");//Get age
-            string ageSTR = Console.ReadLine();
-            int age = Convert.ToInt32(ageSTR);
-            string massage = age <= 30 && genderSTR == "F" ? "press any key to contnue" : "Sorry!! You dont have condition for contnue";
-            if (genderSTR == "F" && age <= 30)// control condition of age and gender
-            {
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.WriteLine(massage);
-                Console.ResetColor();
-                ConsoleKeyInfo key = Console.ReadKey();
-
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine(massage);
-                Console.ResetColor();
-                return;
-            }
-
-
-
-          
             bool isenteredValidmobileNumberSTR = false;
             for (int i = 0; i < 3; i++)// control mobileNumber
             {
@@ -71,42 +31,133 @@ namespace final_project
                         isenteredValidmobileNumberSTR = true;
                         break;
                     }
-
-
-
                 }
-                
-
             }
             if (isenteredValidmobileNumberSTR)
             {
-                Console.BackgroundColor= ConsoleColor.Green;
+                Console.BackgroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("yor mobileNumber is registered");
                 Console.ResetColor();
                 
-
             }
             else
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Wrong number, tried more than three times, try again in 30 minutes ");
                 Console.ResetColor();
-                return;
             }
-            string discription = $"your Fullname is {fullname},your mobilenumber is {isenteredValidmobileNumberSTR} ";
-            Console.WriteLine(discription);
-
-
-
-
-
+            return mobile;
         }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine(DateTime.Now); //Date &Time
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("welcome To Computer school");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("********To take this course, you must be under 30 years old and Female********");
+            Console.ResetColor();
+            Divider(); Divider();
+         
+            for (int i = 0; i < 3; i++)
+            {
+
+                Console.WriteLine("Please enter your name:");//Get name
+                string name = Console.ReadLine();
+                Console.WriteLine("Please enter your last name:");
+                string lastname = Console.ReadLine();
+                string fullname = Fullname(name, lastname);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Hello {fullname}"); Divider();
+                Console.WriteLine("please enter your gender: 'F' for Female & 'M' for Male");//Get gender
+                string genderSTR = Console.ReadLine();
+                Console.WriteLine("please enter your age");//Get age
+                string ageSTR = Console.ReadLine();
+                int age = Convert.ToInt32(ageSTR);
+                string massage = age <= 30 && genderSTR == "F" ? "press any key to contnue" : "Sorry!! You dont have condition for contnue";// control condition of age and gender
+                if (genderSTR == "F" && age <= 30)
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(massage);
+                    Console.ResetColor();
+                    ConsoleKeyInfo key = Console.ReadKey();
+
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine(massage);
+                    Console.ResetColor();
+                    return;
+                }
+                string mobileSTR = Console.ReadLine();
+                MobileNumber(mobileSTR);
+                string discription = $"your Fullname is {fullname},your mobilenumber is {mobileSTR}";
+                Console.WriteLine(discription);
+                Console.WriteLine("If it is correct, type 'T'; Otherwise, go through the steps again");
+                var discribtion = Console.ReadLine();
+
+                if (discribtion == "T")
+                {
+                    Console.WriteLine($"Hi {name}, Please select your appropriate course from the list below and Enter the course number :");
+                    Console.BackgroundColor= ConsoleColor.Green;
+                    Console.ForegroundColor= ConsoleColor.DarkBlue;
+                    Console.WriteLine("____1.C#Fundamental : 120$____" + " ____2.programing in C# :210$____" + "____ 3.SQL Server :280$___");
+                    Console.ResetColor();
+                    string CoUrsename = Console.ReadLine();// select course
+                    switch (CoUrsename)
+                    {
+                        case "1":
+                            {
+                                Console.WriteLine("**Your registration in ''C#Fundamental Course''  was successful**");
+                                Console.BackgroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("your Payment invoice:120$");
+                                Console.ResetColor();
+                                break;
+                            }
+                        case "2":
+                            {
+                                Console.WriteLine("** Your registration in ''programing in C# Course''  was successful**");
+                                Console.BackgroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("your Payment invoice:210$");
+                                Console.ResetColor();
+                                break;
+                            }
+                        case "3":
+                            {
+                                Console.WriteLine("** Your registration in ''SQL Server :280$''  was successful**");
+                                Console.BackgroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("your Payment invoice:280$");
+                                Console.ResetColor();
+                                break;
+                            }
+                    }
+                    Console.WriteLine("After payment, proceed to finalize the registration");
+                    Console.WriteLine("press any Key to exit");
+
+
+                }
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("please enter number of participants:");
+                int Number = Convert.ToInt32(Console.ReadLine());
+                string[] names = new string[Number];
+                Console.ResetColor();
+                foreach (string fullName in names)
+                {
+                    Console.WriteLine(fullName);
+
+
+                }
+            } }
 
 
     }
 
         }
+
 
 
 
