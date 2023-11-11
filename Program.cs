@@ -14,28 +14,32 @@ namespace final_project
         {
             return name + " " + lastname;
         }
-       
+
 
         static void Main(string[] args)
         {
+            Console.WriteLine(DateTime.Now); //Date &Time
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("welcome To Csharpscor : for this cors you must be have lessthan 30 yearsold and be Female");
-            Console.WriteLine(DateTime.Now);
+            Console.WriteLine("welcome To Csharpsco course");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("To take this course, you must be under 30 years old and female");
+            Console.ResetColor();
             Divider(); Divider();
-            Console.WriteLine("Please enter your name:");
+            Console.WriteLine("Please enter your name:");//Get name
             string name = Console.ReadLine();
             Console.WriteLine("Please enter your last name:");
             string lastname = Console.ReadLine();
             string fullname = Fullname(name, lastname);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Hello {fullname}"); Divider();
-            Console.WriteLine("please enter your gender: 'F' for Female & 'M' for Male");
+            Console.WriteLine("please enter your gender: 'F' for Female & 'M' for Male");//Get gender
             string genderSTR = Console.ReadLine();
-            Console.WriteLine("please enter your age");
+            Console.WriteLine("please enter your age");//Get age
             string ageSTR = Console.ReadLine();
             int age = Convert.ToInt32(ageSTR);
             string massage = age <= 30 && genderSTR == "F" ? "press any key to contnue" : "Sorry!! You dont have condition for contnue";
-            if (genderSTR == "F" && age <= 30)
+            if (genderSTR == "F" && age <= 30)// control condition of age and gender
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.WriteLine(massage);
@@ -55,7 +59,7 @@ namespace final_project
 
           
             bool isenteredValidmobileNumberSTR = false;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)// control mobileNumber
             {
                 Console.WriteLine("Please enter your mobileNumber:");
                 string mobileNumberSTR = Console.ReadLine();
@@ -86,7 +90,7 @@ namespace final_project
             else
             {
                 Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine("your Number is Invalid, you enter false more than thirth ");
+                Console.WriteLine("Wrong number, tried more than three times, try again in 30 minutes ");
                 Console.ResetColor();
                 return;
             }
