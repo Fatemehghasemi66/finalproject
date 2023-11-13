@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Channels;
-
-namespace final_project
+﻿namespace final_project
 {
     internal class Program
     {
@@ -18,50 +14,40 @@ namespace final_project
         }
         public static string MobileNumber(string mobile)
         {
-            bool isenteredValidmobileNumberSTR = false;
+            bool isenteredValidmobileNumberSTR = false;       
 
-
-
-            for (int i = 0; i < 3; i++)// control mobileNumber
-            {
-                Console.WriteLine("Please enter your mobileNumber:");
-                string mobileNumberSTR = Console.ReadLine();
-                if (!string.IsNullOrEmpty(mobileNumberSTR) && mobileNumberSTR.Length == 11)
+                for (int i = 0; i < 3; i++)// control mobileNumber
                 {
-                    string Submobile = mobileNumberSTR.Substring(0, 2);
-                    if (Submobile == "09")
+                    Console.WriteLine("Please enter your mobileNumber:");
+                    string mobileNumberSTR = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(mobileNumberSTR) && mobileNumberSTR.Length == 11)
                     {
-                        isenteredValidmobileNumberSTR = true;
-                        break;
+                        string Submobile = mobileNumberSTR.Substring(0, 2);
+                        if (Submobile == "09")
+                        {
+                            isenteredValidmobileNumberSTR = true;
+                            break;
+                        }
                     }
                 }
-            }
-            if (isenteredValidmobileNumberSTR)
-            {
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.WriteLine("yor mobileNumber is registered");
-                Console.ResetColor();
+                if (isenteredValidmobileNumberSTR)
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine("yor mobileNumber is registered");
+                    Console.ResetColor();
 
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine("Wrong number, tried more than three times, try again in 30 minutes ");
-                Console.ResetColor();
-            }
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Wrong number, tried more than three times, try again in 30 minutes ");
+                    Console.ResetColor();
 
+                }
             return mobile;
         }
-        static string PartipateList(string fulname)
-        {
-
-            var List = new List<string>() { fulname };
-            return fulname;
-
-
-        }
-
+     
         static void Main(string[] args)
         {
             Console.WriteLine(DateTime.Now); //Date &Time
@@ -95,11 +81,10 @@ namespace final_project
                         Console.WriteLine("please enter your age");//Get age
                         string ageSTR = Console.ReadLine();
                         int age = Convert.ToInt32(ageSTR);
-                        string massage = age <= 30 && genderSTR == "F" ? "press any key to contnue" : "Sorry!! You dont have condition for contnue";// control condition of age and gender
-                        if (genderSTR == "F" && age <= 30)
+                        if (genderSTR == "F" && age <= 30)//control age
                         {
                             Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.WriteLine(massage);
+                            Console.WriteLine("press any key to contnue");
                             Console.ResetColor();
                             ConsoleKeyInfo key = Console.ReadKey();
 
@@ -107,7 +92,7 @@ namespace final_project
                         else
                         {
                             Console.BackgroundColor = ConsoleColor.Red;
-                            Console.WriteLine(massage);
+                            Console.WriteLine("Sorry!! You dont have condition for contnue");
                             Console.ResetColor();
                             return;
                         }
@@ -116,9 +101,11 @@ namespace final_project
                     catch (FormatException)
                     {
                         Console.WriteLine("please enter just number.....!");
-                        break;
+                        throw;
                     }
                     i++;
+                    if (true)
+                        break;
                 }
          
                 string mobileSTR = Console.ReadLine();
@@ -165,7 +152,6 @@ namespace final_project
                             }
                     }
                     Console.WriteLine("After payment, proceed to finalize the registration");
-                    //Console.WriteLine("press any Key to exit");
                     Divider();
 
                   
